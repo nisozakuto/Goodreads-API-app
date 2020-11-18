@@ -12,8 +12,9 @@ export default class componentName extends Component {
 <section className="pagination">
 
           <ul>
-              <li onClick={()=>{this.props.prevPage()}}>Prev</li>
-              <li onClick={()=>{this.props.nextPage()}}>Next</li></ul> 
+              <li onClick={()=>{this.props.prevPage()}}> &lt;&lt;	 Prev</li>
+              <li> - </li>
+              <li onClick={()=>{this.props.nextPage()}}>Next  &gt;&gt;	</li></ul> 
               </section>
     );
   }

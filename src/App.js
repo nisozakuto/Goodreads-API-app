@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import Pagination from "./components/Pagination";
+import Header from "./components/Header";
 
 export default class App extends Component {
   constructor() {
@@ -56,12 +57,12 @@ export default class App extends Component {
       });
   }
 
-  homepage() {
+  homepage = () => {
     this.setState({
       selectedBookInfo: null,
       results: null,
     });
-  }
+  };
 
   nextPage = () => {
     if (this.state.pageNumber <= this.state.maxPageNumber) {
@@ -85,30 +86,19 @@ export default class App extends Component {
   render() {
     return (
       <>
-        <header>
-          <ul>
-            <li
-              onClick={() => {
-                this.homepage();
-              }}
-            >
-              goodreads API
-            </li>
-          </ul>
-        </header>
+        <Header homepage={this.homepage} />
         <main>
           <section className="search">
             <form onSubmit={this.handleSubmit}>
               <input
                 type="text"
                 placeholder={"term"}
-                value={this.state.vinNumber}
                 onChange={this.handleChange}
               />
               <input type="submit" value="Search" />
             </form>
           </section>
-          <section>
+          <section className="results">
             <article className="books">
               {this.state.selectedBookInfo ? (
                 <div className="book">

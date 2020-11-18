@@ -1,39 +1,79 @@
-#root{
-  min-height: 100vh; 
-  background-color: aliceblue;
+#root {
+	min-height: 100vh;
+	background-color: aliceblue;
+	display: flex;
+	flex-direction: column;
 }
 
-header{
-display: flex;
-align-items: center;
-flex-direction: column;
-border-bottom:1px solid black
+header {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	border-bottom: 1px solid black
 }
 
-header ul{
-  list-style-type: none;
+main {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
 }
 
-.search{
-  padding-top:100px;
-  display: flex;
-  justify-content: center;
+header ul {
+	list-style-type: none;
 }
 
-.books{
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-.book{
-  padding:15px;
-  margin:5px;
-  text-align: center;
-  width: 300px;
-  border: 1px solid black;
+header li:hover {
+	cursor: pointer;
+	background-color: gray;
 }
 
-.book:hover{
-  background-color: rgba(255,255,255,0.6);
-  cursor: pointer;
+.search {
+	padding-top: 100px;
+	display: flex;
+	justify-content: center;
 }
+
+.results {
+	flex-grow: 1;
+}
+
+.books {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.book {
+	padding: 15px;
+	margin: 5px;
+	text-align: center;
+	width: 300px;
+	border: 1px solid black;
+}
+
+.book:hover {
+	background-color: rgba(255, 255, 255, 0.6);
+	cursor: pointer;
+}
+
+/* PAGINATION START */
+.pagination{
+  border-top:1px solid black
+}
+.pagination ul {
+	display: flex;
+	flex-direction: row;
+	list-style-type: none;
+	margin: 50px 0px;
+	justify-content: center;
+}
+
+.pagination li {
+	margin: 5px;
+}
+
+.pagination li:hover {
+	cursor: pointer;
+	background-color: gray;
+}
+/* PAGINATION END */
