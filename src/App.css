@@ -58,7 +58,7 @@ header li:hover {
 
 /* PAGINATION START */
 .pagination{
-  border-top:1px solid black
+  border-top:1px solid black;
 }
 .pagination ul {
 	display: flex;
