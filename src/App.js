@@ -1,8 +1,6 @@
-// see https://repl.it/@Dotdash/Goodreads-Server-Express for implementation details
-// const apiUrl = `https://goodreads-server-express--dotdash.repl.co/search/${term}`;
-
 import React, { Component } from "react";
 import "./App.css";
+import Pagination from "./components/Pagination";
 
 export default class App extends Component {
   constructor() {
@@ -11,6 +9,8 @@ export default class App extends Component {
       term: "",
       results: null,
       selectedBookInfo: null,
+      pageNumber: 1,
+      maxPageNumber: 999999999999,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -21,8 +21,9 @@ export default class App extends Component {
   }
 
   getDetails() {
+    console.log("get details");
     fetch(
-      `https://goodreads-server-express--dotdash.repl.co/search/${this.state.term}`,
+      `https://goodreads-server-express--dotdash.repl.co/search/${this.state.term}?page=${this.state.pageNumber}`,
       {
         method: "GET",
         mode: "cors",
@@ -32,6 +33,7 @@ export default class App extends Component {
       .then((res) => {
         this.setState({
           results: res.list,
+          maxPageNumber: Math.floor(res.total / res.list.length),
         });
       });
   }
@@ -60,6 +62,25 @@ export default class App extends Component {
       results: null,
     });
   }
+
+  nextPage = () => {
+    if (this.state.pageNumber <= this.state.maxPageNumber) {
+      this.setState({
+        pageNumber: this.state.pageNumber + 1,
+      });
+    }
+    this.getDetails();
+  };
+
+  prevPage = () => {
+    if (this.state.pageNumber === 1) {
+      alert("You are at page number 1");
+    } else
+      this.setState({
+        pageNumber: this.state.pageNumber - 1,
+      });
+    this.getDetails();
+  };
 
   render() {
     return (
@@ -121,6 +142,7 @@ export default class App extends Component {
               )}
             </article>
           </section>
+          <Pagination nextPage={this.nextPage} prevPage={this.prevPage} />
         </main>
       </>
     );
